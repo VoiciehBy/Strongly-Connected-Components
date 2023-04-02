@@ -33,3 +33,4 @@
 
 #Additional Visual Studio files
 *.vcxproj*
+x64/
