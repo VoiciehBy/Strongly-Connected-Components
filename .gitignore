@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+#Additional Visual Studio files
+*.vcxproj*
