@@ -5,7 +5,6 @@ graph* transpose_of(graph* g) {
 
 	for (int i = 0; i < g->size; i++) {
 		std::list<int>::iterator j;
-		std::list<int>::iterator k;
 		for (j = g->edges[i].begin(); j != g->edges[i].end(); ++j)
 			gt->edges[*j].push_back(i);
 	}
@@ -32,7 +31,6 @@ void print(std::list<node> list)
 		i++;
 	}
 }
-
 
 std::list<node>dfs(graph* g, node* v) {
 	std::stack<node> stack;
@@ -76,4 +74,12 @@ void dfs(graph* g) {
 		}
 		std::cout << std::endl;
 	}
+}
+
+void writeToTheFile(std::string str)
+{
+	std::ofstream fptr;
+	fptr.open("adjacency_list.csv");
+	fptr << str;
+	fptr.close();
 }

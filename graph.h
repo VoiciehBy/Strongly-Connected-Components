@@ -19,6 +19,7 @@ struct graph {
 	void addDirectedEdge(int v, int w);
 
 	void print();
+	std::string printToStr();
 	void printVertices();
 	~graph();
 };

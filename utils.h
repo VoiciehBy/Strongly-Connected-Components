@@ -3,6 +3,7 @@
 #include "graph.h"
 #include <stack>
 #include <algorithm>
+#include <fstream>
 
 extern graph* transpose_of(graph* g);
 
@@ -12,3 +13,5 @@ extern void print(std::list<node> list);
 extern std::list<node>dfs(graph* g, node* v);
 
 extern void dfs(graph* g);
+
+extern void writeToTheFile(std::string str);

@@ -63,6 +63,8 @@ int main() {
 	std::cout << "transpose of G:" << std::endl;
 	gt->print();*/
 
+	writeToTheFile(g->printToStr());
+
 	std::cout << "G:" << std::endl;
 	dfs(g);
 

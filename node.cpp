@@ -1,32 +1,29 @@
 #include "node.h"
 
-node::node(int value, Color color, int f)
+node::node(int value, Color color)
 {
 	this->value = value;
 	this->color = color;
-	this->f = f;
 }
 
 node::node(const node& o)
 {
 	this->value = o.value;
 	this->color = o.color;
-	this->f = o.f;
 }
 
 node& node::operator=(const node& o) {
 	if (this == &o)
 		return *this;
 	this->value = o.color;
-	this->f = o.f;
 	return *this;
 }
 
 bool node::operator==(const node& o) {
-	return value == o.value && color == o.color && f == o.f;
+	return value == o.value && color == o.color;
 }
 
-bool node::operator<(const node & o)
+bool node::operator<(const node& o)
 {
 	return value < o.value;
 }
@@ -50,5 +47,5 @@ void node::print()
 		str = "BLACK";
 		break;
 	}
-	std::cout << char('a' + value) << ',' << str << ',' << f << ' ';
+	std::cout << char('a' + value) << ',' << str << ' ';
 }

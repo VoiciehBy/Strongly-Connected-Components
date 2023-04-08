@@ -43,6 +43,22 @@ void graph::print() {
 		std::cout << std::endl;
 	}
 }
+
+std::string graph::printToStr() {
+	std::string str = "";
+	for (int i = 0; i < size; i++) {
+		std::list<int>::iterator j = edges[i].begin();
+		str += char('a' + i);
+		str += ' ';
+		for (; j != this->edges[i].end(); j++) {
+			str += char('a' + *j);
+			str += ' ';
+		}
+		str += "\n";
+	}
+	return str;
+}
+
 void graph::printVertices()
 {
 	for (int i = 0; i < this->size; i++)
