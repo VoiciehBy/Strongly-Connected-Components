@@ -52,24 +52,53 @@ graph* create_graph(int n) {
 	return g;
 }
 
+graph* create_cormen_graph(int n) {
+	graph* g = new graph(n);
+	g->addDirectedEdge(graph::letterToNumberMap['a'], graph::letterToNumberMap['b']);
+
+	g->addDirectedEdge(graph::letterToNumberMap['b'], graph::letterToNumberMap['c']);
+	g->addDirectedEdge(graph::letterToNumberMap['b'], graph::letterToNumberMap['e']);
+	g->addDirectedEdge(graph::letterToNumberMap['b'], graph::letterToNumberMap['f']);
+
+	g->addDirectedEdge(graph::letterToNumberMap['c'], graph::letterToNumberMap['d']);
+	g->addDirectedEdge(graph::letterToNumberMap['c'], graph::letterToNumberMap['g']);
+
+	g->addDirectedEdge(graph::letterToNumberMap['d'], graph::letterToNumberMap['c']);
+	g->addDirectedEdge(graph::letterToNumberMap['d'], graph::letterToNumberMap['h']);
+
+	g->addDirectedEdge(graph::letterToNumberMap['e'], graph::letterToNumberMap['a']);
+	g->addDirectedEdge(graph::letterToNumberMap['e'], graph::letterToNumberMap['f']);
+
+	g->addDirectedEdge(graph::letterToNumberMap['f'], graph::letterToNumberMap['g']);
+
+	g->addDirectedEdge(graph::letterToNumberMap['g'], graph::letterToNumberMap['f']);
+	g->addDirectedEdge(graph::letterToNumberMap['g'], graph::letterToNumberMap['h']);
+
+	g->addDirectedEdge(graph::letterToNumberMap['h'], graph::letterToNumberMap['h']);
+	return g;
+}
+
 int main() {
 	int n = 20;
 
 	graph* g = create_graph(n);
+	graph* g_cormen = create_cormen_graph(8);
 	graph* gt = transpose_of(g);
 
-	/*g->print();
+	g->print();
 	std::cout << std::endl << std::endl;
 	std::cout << "transpose of G:" << std::endl;
-	gt->print();*/
+	gt->print();
 
 	writeToTheFile(g->printToStr());
 
 	std::cout << "G:" << std::endl;
 	dfs(g);
+	std::cout << std::endl;
 
 	std::cout << "transpose of G:" << std::endl;
 	dfs(gt);
+
 	delete g;
 	delete gt;
 	return 0;
