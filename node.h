@@ -10,8 +10,10 @@ enum Color { WHITE, GRAY, BLACK };
 struct node {
 	int value;
 	Color color;
+	int discovery_time;
+	int finish_time;
 
-	node(int value = 0, Color color = WHITE);
+	node(int value = 0, Color color = WHITE,int discovery_time = 0, int finish_time = 0);
 	node(const node&);
 
 	node& operator=(const node& o);

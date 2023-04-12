@@ -32,48 +32,32 @@ void print(std::list<node> list)
 	}
 }
 
-std::list<node>dfs(graph* g, node* v) {
-	std::stack<node> stack;
-	std::list<node> path;
-	std::list<node> was;
-	node* n = v;
-
-	stack.push(*n);
-	path.push_back(*n);
-	was.push_back(*n);
-
-	while (!stack.empty()) {
-		n = &stack.top();
-		stack.pop();
-		if (n->color == WHITE) {
-			n->color = BLACK;
-			std::list<int> tmp = g->edges[n->value];
-			std::list<int>::iterator i = tmp.begin();
-			while (i != tmp.end()) {
-				if (!in(was, g->vertices[*i].value)) {
-					stack.push(g->vertices[*i]);
-					path.push_back(g->vertices[*i]);
-					was.push_back(*n);
-				}
-				i++;
-			}
+void dfs_visit(graph* g, int v, int& time) {
+	time = time + 1;
+	g->vertices[v].discovery_time = time;
+	g->vertices[v].color = GRAY;
+	std::list<int> tmp = g->edges[v];
+	std::list<int>::iterator i = tmp.begin();
+	while (i != tmp.end()) {
+		if (g->vertices[*i].color == WHITE) {
+			std::cout << char('a' + *i) << ' ';
+			dfs_visit(g, *i, time);
 		}
+		i++;
 	}
-	return path;
+	g->vertices[v].color = BLACK;
+	time = time + 1;
+	g->vertices[v].finish_time = time;
 }
 
 void dfs(graph* g) {
-	for (int i = 0; i < g->size; i++) {
-		node* v = new node(i);
-		std::list<node> list = dfs(g, v);
-		std::list<node>::iterator j = list.begin();
-		while (j != list.end()) {
-			j->printLetter();
-			std::cout << ' ';
-			j++;
-		}
-		std::cout << std::endl;
-	}
+	for (int i = 0; i < g->size; i++)
+		g->vertices[i].color = WHITE;
+
+	int time = 0;
+	for (int i = 0; i < g->size; i++)
+		if (g->vertices[i].color == WHITE)
+			dfs_visit(g, g->vertices[i].value, time);
 }
 
 void writeToTheFile(std::string str)

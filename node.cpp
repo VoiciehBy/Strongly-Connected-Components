@@ -1,15 +1,19 @@
 #include "node.h"
 
-node::node(int value, Color color)
+node::node(int value, Color color, int discovery_time, int finish_time)
 {
 	this->value = value;
 	this->color = color;
+	this->discovery_time = discovery_time;
+	this->finish_time = finish_time;
 }
 
 node::node(const node& o)
 {
 	this->value = o.value;
 	this->color = o.color;
+	this->discovery_time = o.discovery_time;
+	this->finish_time = o.finish_time;
 }
 
 node& node::operator=(const node& o) {
