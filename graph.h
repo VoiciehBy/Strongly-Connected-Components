@@ -13,7 +13,6 @@ struct graph {
 	static std::map<char, int> letterToNumberMap;
 
 	graph(int size);
-
 	graph(graph* g);
 
 	void addDirectedEdge(int v, int w);

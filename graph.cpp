@@ -1,13 +1,5 @@
 #include "graph.h"
 
-graph::graph(int size) {
-	this->size = size;
-	this->vertices = new node[this->size];
-	for (int i = 0; i < this->size; i++)
-		this->vertices[i].value = i;
-	this->edges = new std::list<int>[this->size];
-}
-
 static std::map<char, int> getLetterToNumberMap() {
 	static std::map<char, int> m;
 	for (int i = 0; i < 20; i++) {
@@ -15,6 +7,14 @@ static std::map<char, int> getLetterToNumberMap() {
 		m[c] = i;
 	}
 	return m;
+}
+
+graph::graph(int size) {
+	this->size = size;
+	this->vertices = new node[this->size];
+	for (int i = 0; i < this->size; i++)
+		this->vertices[i].value = i;
+	this->edges = new std::list<int>[this->size];
 }
 
 std::map<char, int> graph::letterToNumberMap = getLetterToNumberMap();

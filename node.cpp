@@ -51,5 +51,7 @@ void node::print()
 		str = "BLACK";
 		break;
 	}
-	std::cout << char('a' + value) << ',' << str << ' ';
+	std::cout << char('a' + value) << ','
+		<< str << ',' << "d:" << discovery_time << ','
+		<< "f:" << finish_time << std::endl;
 }

@@ -79,27 +79,28 @@ graph* create_cormen_graph(int n) {
 }
 
 int main() {
-	int n = 20;
-
-	graph* g = create_graph(n);
-	graph* g_cormen = create_cormen_graph(8);
-	graph* gt = transpose_of(g);
-
-	g->print();
-	std::cout << std::endl << std::endl;
-	std::cout << "transpose of G:" << std::endl;
-	gt->print();
-
-	writeToTheFile(g->printToStr());
-
-	std::cout << "G:" << std::endl;
-	dfs(g);
-	std::cout << std::endl;
-
-	std::cout << "transpose of G:" << std::endl;
-	dfs(gt);
-
+	graph* g = create_graph(20);
+	std::cout << "Strongly Connected Components of graph G:" << std::endl;
+	std::list<node> result = kosaraju(g);
+	std::list<node>::iterator j = result.begin();
+	while (j != result.end()) {
+		int d_0 = 0, d_1 = 0;
+		if (j != result.begin()) {
+			d_0 = (*j).discovery_time;
+			j++;
+			if (j == result.end())
+				j--;
+			else {
+				d_1 = (*j).discovery_time;
+				j--;
+			}
+		}
+		(*j).printLetter();
+		std::cout << ' ';
+		if (d_1 - d_0 > 1)
+			std::cout << std::endl;
+		++j;
+	}
 	delete g;
-	delete gt;
 	return 0;
 }

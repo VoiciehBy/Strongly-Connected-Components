@@ -1,6 +1,4 @@
 #include <iostream>
-#include <list>
-#include <map>
 
 #ifndef NODE_H
 #define NODE_H
@@ -13,7 +11,7 @@ struct node {
 	int discovery_time;
 	int finish_time;
 
-	node(int value = 0, Color color = WHITE,int discovery_time = 0, int finish_time = 0);
+	node(int value = 0, Color color = WHITE, int discovery_time = 0, int finish_time = 0);
 	node(const node&);
 
 	node& operator=(const node& o);
@@ -21,8 +19,8 @@ struct node {
 	bool operator==(const node& o);
 	bool operator<(const node& o);
 
-	void print();
 	void printLetter();
+	void print();
 };
 
 #endif // NODE_H
